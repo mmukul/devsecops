@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script { build_stage = env.STAGE_NAME }
                 sh label: 'vulnerability scan', script: '''
-                        trivy image nginx
+                        trivy image --severity CRITICAL --exit-code 1 nginx
             '''
             }
         }
