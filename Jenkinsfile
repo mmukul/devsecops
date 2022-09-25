@@ -26,3 +26,14 @@ pipeline {
             '''
             }
         }
+  
+  stage('Run vulnerability scan with trivy') {
+            steps {
+                script { build_stage = env.STAGE_NAME }
+                sh label: 'vulnerability scan', script: '''
+                        trivy image nginx
+            '''
+            }
+        }
+    }
+}
